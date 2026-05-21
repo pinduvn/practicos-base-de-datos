@@ -6,10 +6,11 @@ services:
       POSTGRES_USER: fabrica
       POSTGRES_PASSWORD: fabrica123
       POSTGRES_DB: fabrica
+      PGDATA: /var/lib/postgresql/18
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql
       - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U fabrica -d fabrica"]
